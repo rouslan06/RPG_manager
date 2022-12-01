@@ -26,48 +26,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required',
-            'mdp' => 'required'
+            'mdp' => 'required',
         ];
-    }
-
-    /**
-     * Get the needed authorization credentials from the request.
-     *
-     * @return array
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    public function getCredentials()
-    {
-        // The form field for providing username or password
-        // have name of "username", however, in order to support
-        // logging users in with both (username and email)
-        // we have to check if user has entered one or another
-        $email = $this->get('email');
-
-        if ($this->isEmail($email)) {
-            return [
-                'email' => $email,
-                'mdp' => $this->get('mdp')
-            ];
-        }
-
-        return $this->only('username', 'password');
-    }
-
-    /**
-     * Validate if provided parameter is valid email.
-     *
-     * @param $param
-     * @return bool
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    private function isEmail($param)
-    {
-        $factory = $this->container->make(ValidationFactory::class);
-
-        return ! $factory->make(
-            ['username' => $param],
-            ['username' => 'email']
-        )->fails();
     }
 }

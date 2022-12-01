@@ -84,7 +84,7 @@
             <div class="input-group has-validation">
                 <input type="password" value="{{ old('mdp') }}" class="form-control
                 @if($errors->has('mdp')) is-invalid @endif
-                " name="mdp" id="mdp" placeholder="password" />
+                " name="mdp" id="mdp" placeholder="mdp" />
 
                 @if($errors->has('mdp'))
                     <div class="invalid-feedback">

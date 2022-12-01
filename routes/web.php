@@ -47,6 +47,12 @@ Route::get('/personnage', [\App\Http\Controllers\RpgController::class, 'personna
 
 Route::get('/personnageListe', [\App\Http\Controllers\RpgController::class, 'personnageListe'])->name('personnage.liste');
 
+/************************* MODIFICATION PERSONNAGE */
+
+Route::get('/pModification', [\App\Http\Controllers\RpgController::class, 'pModification'])->name('personnage.modification');
+
+Route::get('/gModification', [\App\Http\Controllers\RpgController::class, 'gMmodification'])->name('groupe.modification');
+
 /************************* CREATION DU GROUPE / AFFICHAGE DE LA LISTE DES GROUPES */
 
 Route::get('/groupe', [\App\Http\Controllers\RpgController::class, 'groupe'])->name('groupe.rpg');

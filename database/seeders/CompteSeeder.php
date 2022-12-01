@@ -10,9 +10,18 @@ class CompteSeeder extends Seeder
 {
     \App\Models\Compte::factory(1)->create();
 
-        /*
-        $this->call([
-            PersonnageSeeder::class
-        ]);
-        */
+    {
+        /**
+         * Run the database seeds.
+         *
+         * @return void
+         */
+        public function run()
+        {
+            Compte::create([
+                'mdp'   =>  Hash::make('mdp'),
+                //'remember_token' =>  str_random(10),
+            ]);
+        }
+    }
 }

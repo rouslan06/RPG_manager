@@ -30,11 +30,21 @@
                             {{ $groupe->description }}
                         </p>
 
-                        <form style="text-align: center; margin-bottom: 10px;" method="post" action="{{ route('groupe.destroy', $groupe->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" class="btn btn-primary" value="SUPPRIMER LE GROUPE" />
-                        </form>
+                        <div style='display: flex; margin-bottom: 10px; width: 100%;'>
+                            <div style='display: flex; margin-left: auto; margin-right: auto; '>
+                                <form style="text-align: center; margin-right: 10px;" method="get" action="">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-primary" value="MODIFIER" />
+                                </form>
+
+                                <form style="text-align: center;" method="post" action="{{ route('groupe.destroy', $groupe->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-primary" value="SUPPRIMER" />
+                                </form>
+                            </div>
+                        </div>
 
                     </div>
                     

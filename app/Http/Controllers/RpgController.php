@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PersonnageRequest;
 use App\Http\Requests\GroupeRequest;
 use App\Http\Requests\CompteRequest;
+use App\Http\Requests\LoginRequest;
 
 use App\Models\Personnage;
 use App\Models\Groupe;
 use App\Models\Compte;
 use Illuminate\Support\Facades\Auth;
+
+use Validator;
 
 use Illuminate\Http\Request;
 
@@ -35,13 +38,16 @@ class RpgController extends Controller
 
     /******************************************/
 
-    public function login()
+    public function login(LoginRequest $request)
     {
-        if (auth()->attempt(request(['email', 'mdp'])) == false) {
-            return back()->withErrors([
-                'message' => "L'email ou le mot de passe est incorrect, réessayez ! :)",
-            ]);
-        }
+        $user_data = array(
+            'email'  => $request->get('email'),
+            'mdp' => $request->get('mdp')
+        );
+      
+        Auth::attempt($user_data);
+
+        return redirect()->route('profile.index');
     }
 
     /******************************************/
@@ -72,6 +78,26 @@ class RpgController extends Controller
         return view('rpg_manager.personnageListe')
             ->with([
                 'personnages' => Personnage::all()
+            ]);
+    }
+
+    /******************************************/
+
+    public function pModification()
+    {
+        return view('rpg_manager.pModification')
+            ->with([
+                'pModification' => Personnage::all()
+            ]);
+    }
+
+    /******************************************/
+
+    public function gModification()
+    {
+        return view('rpg_manager.pModification')
+            ->with([
+                'gModification' => Groupe::all()
             ]);
     }
 
